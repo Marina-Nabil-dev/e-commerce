@@ -1,0 +1,119 @@
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: #fff; /* White text */
+  font-family: Alexandria;
+}
+
+.header {
+  width: 1440px;
+  height: 652px;
+  position: absolute;
+  background: linear-gradient(
+      282deg,
+      rgba(30, 70, 120, 0) 0.01%,
+      rgba(30, 70, 120, 0.53) 43.76%,
+      #1e4678 100%
+    ),
+    url("../../public/home/home1.png") lightgray 50% / cover no-repeat;
+  margin: 10px;
+}
+
+.header h1 {
+  padding-top: 108px;
+  /* padding-bottom: 38px; */
+  width: 848px;
+  font-size: 3em;
+  text-align: left;
+  margin-left: 2em;
+}
+
+.header h2 {
+  color: #fcfcfd;
+  font-family: Alexandria;
+  text-align: left;
+  margin-left: 4em;
+  color: white;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px; /* 133.333% */
+}
+.biddex-button {
+  color: white;
+  background-color:var(--Primary-color, #2d69b4);
+  position: absolute;
+  font-family: Alexandria;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: left;
+  border: #1e4678 1px;
+  border-radius: 20px;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: relative;
+  top: 10px;
+  right: 34rem;
+}
+
+.searchBar {
+  display: inline-flex;
+  padding: 16px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  background-color: transparent;
+  position: relative;
+  top: 9rem;
+  right: 17rem;
+  border-radius: 16px;
+  border: 1px solid var(--Border-line);
+  background: rgba(255, 255, 255, 0.15);
+  /* Shadow/lg */
+  box-shadow: 0px 12px 16px -4px rgba(16, 24, 40, 0.08),
+    0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+}
+.searchField {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  flex: 1 0 0;
+  color: var(--Gray-500, #667085);
+  /* Text md/Regular */
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+.searchField select {
+  display: flex;
+  padding: 10px 14px 10px 14px;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  border-radius: 10px;
+  border: none;
+  appearance: none; /* Remove default select styles */
+  cursor: pointer;
+}
+.search-button {
+  display: flex;
+  padding: 10px 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 40px;
+  border: var(--Border-line);
+  background: var(--Primary-color);
+  color: var(--Text-color);
+  font-weight: bold;
+
+}
