@@ -20,14 +20,7 @@ function App() {
 
   const handleBrandChange = (event) => {
     setBrand(event.target.value);
-    // fetchModels(selectedBrand);
   };
-  // const fetchModels = async (brandSlug) => {
-  //   if (!brandSlug) return;
-   
-  //     const response = await getApiData( ApiRoutes.MODELS + brandSlug);
-  //     setModels(response);
-  // };
 
   const fetchPriceCategories = async() =>{
     const response =await getApiData(ApiRoutes.PRICE_CATEGORIES);
@@ -41,11 +34,6 @@ function App() {
   useEffect(() => {
     fetchBrands();
   }, []);
-  // useEffect(() => {
-  //   if (selectedBrand) {
-  //     fetchModels(selectedBrand);
-  //   }
-  // }, [selectedBrand]);
 
   useEffect(()=>{fetchPriceCategories()}, [])
 

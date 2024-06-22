@@ -15,7 +15,6 @@ const DropdownMenu = ({ name, options, icon }) => {
         <button
           id="menu"
           type="button"
-          aria-haspopup="true"
           className="flex justify-center w-full rounded-md px-4 py-2  text-white hover: focus:outline-none"
         >
           {name}
