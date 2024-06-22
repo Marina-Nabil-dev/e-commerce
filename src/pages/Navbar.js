@@ -4,6 +4,7 @@ import DropdownMenu from "../components/DropdownMenu";
 import AuctionIcon from "../components/icons/AuctionIcon";
 import BuyNowIcon from "../components/icons/BuyNowIcon";
 import HelpIcon from "../components/icons/HelpIcon";
+import { FaGavel } from 'react-icons/fa'; // Example icon for Auctions
 
 function App() {
   const auctionOptions = [
@@ -47,10 +48,10 @@ function App() {
         <DropdownMenu
           name="Auctions"
           options={auctionOptions}
-          icon={AuctionIcon}
+          icon={<AuctionIcon/>}
         />
 
-        <DropdownMenu name="Buy Now" options={buyNow} icon={BuyNowIcon} />
+        <DropdownMenu name="Buy Now" options={buyNow} icon={<BuyNowIcon/>} />
 
         <button className="inline-flex relative text-left">
           <span className="pr-1">
@@ -74,7 +75,7 @@ function App() {
           <a href="#">Import Now</a>
         </button>
 
-        <DropdownMenu name="Help" options={help} icon={HelpIcon} />
+        <DropdownMenu name="Help" options={help} icon={<HelpIcon/>} />
 
         <button className="inline-flex relative text-left">
           <span className="pr-1">

@@ -3,20 +3,22 @@ import React, { useState } from "react";
 const DropdownMenu = ({ name, options, icon }) => {
 
   const [isOpen, setIsOpen] = useState(false);
+  console.log(icon);
 
   return (
-    <div className="relative inline-block self-center w-30 text-left">
+    <div className="relative inline-flex self-center w-30 text-left">
       <div
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
       >
-        {icon}
+    
         
         <button
           id="menu"
           type="button"
-          className="flex justify-center w-full rounded-md px-4 py-2  text-white hover: focus:outline-none"
+          className="flex justify-center w-full rounded-md pl-4 py-2  text-white hover: focus:outline-none"
         >
+            <span className="pr-1"> {icon}</span>
           {name}
           <svg className="ml-1 mt-1"
             xmlns="http://www.w3.org/2000/svg"
