@@ -3,7 +3,6 @@ import React, { useState } from "react";
 const DropdownMenu = ({ name, options, icon }) => {
 
   const [isOpen, setIsOpen] = useState(false);
-  console.log(icon);
 
   return (
     <div className="relative inline-flex self-center w-30 text-left">

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { ApiRoutes } from "../routes/apiRoutes";
 import {getApiData} from "../helpers/getApiData"
+import HomeAuctionSection from "../components/home/HomeAuctionSection";
 import  Navbar  from './Navbar';
 
 function App() {
@@ -105,6 +106,8 @@ function App() {
         </button>
       </form>
       </div>
+      <HomeAuctionSection/>
+
     </div>
     </div>
   );
