@@ -1,4 +1,5 @@
 export const HomeRoutes = {
     LIVE_AUCTIONS : "home/live-auctions",
-    UPCOMING_AUCTIONS : "home/upcoming-auctions"
+    UPCOMING_AUCTIONS : "home/upcoming-auctions",
+    sellTypeItems : "home/vehicles/"
 }
