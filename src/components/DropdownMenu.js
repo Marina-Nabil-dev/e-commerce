@@ -29,7 +29,7 @@ const DropdownMenu = ({ name, options, icon }) => {
             <path
               d="M5.5 7.5L10.5 12.5L15.5 7.5"
               stroke="#FCFCFD"
-              stroke-width="1.66667"
+              strokeWidth="1.66667"
               stroke-linecap="round"
               stroke-linejoin="round"
             />

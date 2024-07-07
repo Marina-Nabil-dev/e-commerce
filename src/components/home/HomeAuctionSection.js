@@ -1,13 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import ThreeSixtyIcon from "../icons/ThreeSixtyIcon";
 import SpeedMotor from "./../icons/SpeedMotor";
 import SettingsIcon from "./../icons/SettingsIcon";
 import CalenderIcon from "./../icons/CalenderIcon";
 import { getApiData } from "../../helpers/getApiData";
+import { HomeRoutes } from "../../routes/home";
 export default function HomeAuctionSection() {
+  const [auctions, setAuctions] = useState([]);
   const fetchAuctions = async() => 
     {
-      const response = getApiData()
+      const response = getApiData(HomeRoutes.LIVE_AUCTIONS)
+      setAuctions(response)
+      console.log(auctions);
     };
   return (
     <div className="flex p-[104px_80px_0px_80px] flex-col justify-items-start gap-12 self-stretch">
