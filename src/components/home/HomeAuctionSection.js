@@ -50,16 +50,6 @@ export default function HomeAuctionSection() {
             return (
               <div className="w-[330px] h-[360px] flex flex-col gap-4 pr-2 items-center bg-white rounded-md shadow-sm shadow-dark-700 mb-2">
                 <div className="relative text-gray-500">
-                  {/* <div className="absolute top-9 overflow-visible">
-                    <span className="text-sm font-bold">
-                      {auction.price_category.name}
-                    </span>
-                    {auction.has_360 ? (
-                      <span className="rounded-full bg-black bg-opacity-25 ml-40">
-                        <ThreeSixtyIcon />
-                      </span>
-                    ) : null}
-                  </div> */}
                   <SwiperImageComponent imageUrls={auction.images} auction={auction} />
 
                   <div className="max-w-[360px]">
