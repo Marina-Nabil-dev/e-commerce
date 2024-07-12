@@ -10,11 +10,10 @@ export const getApiData = async (routeName) => {
       process.env.REACT_APP_API_BASE_URL + routeName,
       { headers }
     );
-    const result = response.data.data
-    if(typeof(result == Object))
-      {
-        return Object.values(result)
-      }
+    const result = response.data.data;
+    if (typeof (result == Object)) {
+      return Object.values(result);
+    }
     return result;
   } catch (error) {
     throw error; // Re-throw the error for handling in the calling component

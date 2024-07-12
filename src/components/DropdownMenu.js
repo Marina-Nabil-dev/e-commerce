@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const DropdownMenu = ({ name, options, icon }) => {
-
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -10,16 +9,15 @@ const DropdownMenu = ({ name, options, icon }) => {
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
       >
-    
-        
         <button
           id="menu"
           type="button"
           className="flex justify-center w-full rounded-md pl-4 py-2  text-white hover: focus:outline-none"
         >
-            <span className="pr-1"> {icon}</span>
+          <span className="pr-1"> {icon}</span>
           {name}
-          <svg className="ml-1 mt-1"
+          <svg
+            className="ml-1 mt-1"
             xmlns="http://www.w3.org/2000/svg"
             width="21"
             height="20"
@@ -38,8 +36,8 @@ const DropdownMenu = ({ name, options, icon }) => {
 
         {isOpen && (
           <div
-          className="flex self-stretch items-center justify-center origin-top-right absolute right-0  rounded-md shadow-lg bg-white text-black ring-1 ring-black ring-opacity-5 focus:outline-none"
-          role="menu"
+            className="flex self-stretch items-center justify-center origin-top-right absolute right-0  rounded-md shadow-lg bg-white text-black ring-1 ring-black ring-opacity-5 focus:outline-none"
+            role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
           >
