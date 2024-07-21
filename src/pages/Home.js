@@ -3,6 +3,7 @@ import HomeAuctionSection from "../components/home/HomeAuctionSection";
 import Navbar from "./Navbar";
 import HomeSearchSection from "../components/home/HomeSearchSection";
 import WhyBuyFromUsSection from "../components/home/WhyBuyFromUsSection";
+import HomeFixedPriceSection from "../components/home/HomeFixedPriceSection";
 
 function App() {
   return (
@@ -15,12 +16,13 @@ function App() {
           style={{ backgroundImage: 'url("/home/home2.jpg")' }}
         >
           <Navbar />
-          <HomeSearchSection/>
+          <HomeSearchSection />
         </div>
-        {/* <HomeAuctionSection /> */}
+        <HomeAuctionSection />
 
-        <WhyBuyFromUsSection/>
+        <WhyBuyFromUsSection />
 
+        <HomeFixedPriceSection />
       </div>
     </div>
   );

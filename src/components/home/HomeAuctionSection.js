@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ThreeSixtyIcon from "../icons/ThreeSixtyIcon";
 import { getApiData } from "../../helpers/getApiData";
 import { HomeRoutes } from "../../routes/home";
 import { sellTypes } from "../../enum/SellTypeEnum";
@@ -50,7 +49,7 @@ export default function HomeAuctionSection() {
             return (
               <div className="w-[330px] h-[360px] flex flex-col gap-4 pr-2 items-center bg-white rounded-md shadow-sm shadow-dark-700 mb-2">
                 <div className="relative text-gray-500">
-                  <SwiperImageComponent imageUrls={auction.images} auction={auction} />
+                  <SwiperImageComponent imageUrls={auction.images} item={auction} />
 
                   <div className="max-w-[360px]">
                     {auction.auction_data.is_upcoming ? (

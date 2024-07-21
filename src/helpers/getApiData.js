@@ -1,13 +1,15 @@
 import axios from "axios";
 export const getApiData = async (routeName) => {
+  console.log(process.env.REACT_APP_API_DEVELOP_URL);
   try {
     const headers = {
       "Accept-Language": "en",
       Accept: "application/json",
+      "x-api-key" : process.env.REACT_APP_DEVELOP_API_KEY
     };
 
     const response = await axios.get(
-      process.env.REACT_APP_API_BASE_URL + routeName,
+      process.env.REACT_APP_API_DEVELOP_URL + routeName,
       { headers }
     );
     const result = response.data.data;

@@ -7,7 +7,8 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import ThreeSixtyIcon from "./icons/ThreeSixtyIcon";
 
-const SwiperImageComponent = ({ imageUrls, auction }) => {
+const SwiperImageComponent = ({ imageUrls, item }) => {
+  console.log("Item:", item);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const swiperRef = useRef(null);
@@ -34,7 +35,7 @@ const SwiperImageComponent = ({ imageUrls, auction }) => {
           pagination={{ clickable: true }}
           ref={swiperRef}
           onSlideChange={handleSlideChange}
-          className="max-w-[320px] w-auto h-60 overflow-hidden"
+          className="max-w-[340px] w-auto h-60 overflow-hidden"
         >
           {imageUrls.map((url, index) => (
             <SwiperSlide
@@ -47,35 +48,19 @@ const SwiperImageComponent = ({ imageUrls, auction }) => {
                 width: "100%",
               }}
             >
-              <div className="swiper-slide-content flex items-center absolute m-2  font-bold text-gray-500 ">
+              <div className="swiper-slide-content flex items-center mx-2 p-2  font-bold text-gray-500 ">
                 <span className="text-sm p-1  bg-white rounded-full shadow-sm shadow-dark-700">
-                  {auction.price_category.name}
+                  {item.price_category.name}
                 </span>
-                {auction.has_360 ? (
+                {item.has_360 ? (
                   <span className="rounded-full p-1 bg-black bg-opacity-25 ml-40">
                     <ThreeSixtyIcon />
                   </span>
                 ) : null}
               </div>
-
-              {/* <img src={url} alt="Car image" className="w-full h-full object-cover" /> */}
             </SwiperSlide>
           ))}
         </Swiper>
-        {/* <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4">
-          <button
-            className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            onClick={goToPreviousSlide}
-          >
-            Previous
-          </button>
-          <button
-            className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            onClick={goToNextSlide}
-          >
-            Next
-          </button>
-        </div> */}
       </div>
     </div>
   );
