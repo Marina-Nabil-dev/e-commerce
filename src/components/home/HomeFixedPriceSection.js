@@ -36,23 +36,65 @@ export default function HomeFixedPriceSection() {
       <h3 className="text-black text-[20px] font-bold font-[Alexandria]">
         Buy unique vehicles with affordable prices
       </h3>
-      <div className="grid grid-cols-3 gap-4 justify-items-stretch">
+      <div className="grid grid-cols-3 gap-5 justify-items-stretch">
         {fixedPriceItems.length > 0 ? (
           fixedPriceItems.map((fixedPriceItem) => {
             return (
-              <div className="w-full h-full m-5 bg-white rounded-md shadow-md  hover:shadow-lg">
-                <div className="relative text-gray-500">
-                <SwiperImageComponent imageUrls={fixedPriceItem.images} item={fixedPriceItem} />
-                </div>
-                <div className="flex flex-col items-start p-[10px_12px_16px_12px] self-stretch">
-                  <div className=" flex text-grayDarkest font-bold pb-2 justify-content:space-between">
-                    <p>{fixedPriceItem.title.length < 10  ? fixedPriceItem.title : fixedPriceItem.title.substring(0, 20) + '...'}</p>
-                    <span className="ml-auto">ss</span>
+              <div className="w-full m-5 bg-white rounded-md shadow-md  hover:shadow-lg">
+                <SwiperImageComponent
+                  imageUrls={fixedPriceItem.images}
+                  item={fixedPriceItem}
+                />
+
+                <div className="flex flex-col items-start p-[10px_12px_16px_12px] self-stretch justify-between">
+                  <div className="flex justify-between items-center text-grayDarkest pb-2">
+                    <p className="font-bold">
+                      {fixedPriceItem.title.length < 18
+                        ? fixedPriceItem.title
+                        : fixedPriceItem.title.substring(0, 18) + "..."}
+                    </p>
+                    <p className="ml-9 text-[12px]">
+                      {fixedPriceItem.currency}{" "}
+                      <span className="ml-[2px] font-bold text-base">
+                        {fixedPriceItem.price.toLocaleString()}
+                      </span>
+                    </p>
+
+                    {!fixedPriceItem.is_reserved ? (
+                      <div className="justify-end text-right ml-auto text-neutral-500">
+                        <p className="text-[12px]">
+                          {fixedPriceItem.currency}{" "}
+                          <span className="ml-[2px]">
+                            {fixedPriceItem.price.toLocaleString()}
+                          </span>
+                        </p>
+                      </div>
+                    ) : (
+                      <div></div>
+                    )}
                   </div>
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-4 h-4 mr-2"
+                  >
+                    <path d="M18 13V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2z" />
+                  </svg>
                   <ul className="flex space-x-2">
                     {fixedPriceItem.specs.map((spec) => (
                       <li className="text-gray-700 flex items-center justify-center pl-3">
-                       {spec.icon != "" ?  <img className="pr-1 size-5" src={spec.icon} /> : <p></p> } {spec.value}
+                        {spec.icon != "" ? (
+                          <img className="pr-1 size-5" src={spec.icon} />
+                        ) : (
+                          <p></p>
+                        )}{" "}
+                        {spec.value}
                       </li>
                     ))}
                   </ul>
@@ -61,7 +103,7 @@ export default function HomeFixedPriceSection() {
             );
           })
         ) : (
-          <CarNotFound/>
+          <CarNotFound />
         )}
       </div>
     </div>

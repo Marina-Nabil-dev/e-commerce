@@ -8,7 +8,6 @@ import "swiper/css/autoplay";
 import ThreeSixtyIcon from "./icons/ThreeSixtyIcon";
 
 const SwiperImageComponent = ({ imageUrls, item }) => {
-  console.log("Item:", item);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const swiperRef = useRef(null);
