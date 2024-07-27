@@ -34,7 +34,7 @@ const SwiperImageComponent = ({ imageUrls, item }) => {
           pagination={{ clickable: true }}
           ref={swiperRef}
           onSlideChange={handleSlideChange}
-          className="max-w-[340px] w-auto h-60 overflow-hidden"
+          className="max-w-[360px] w-auto h-60 overflow-hidden"
         >
           {imageUrls.map((url, index) => (
             <SwiperSlide

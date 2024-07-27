@@ -4,7 +4,7 @@ const DropdownMenu = ({ name, options, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative inline-flex self-center w-30 text-left">
+    <div className="relative inline-flex self-center w-30 text-center">
       <div
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
@@ -12,12 +12,11 @@ const DropdownMenu = ({ name, options, icon }) => {
         <button
           id="menu"
           type="button"
-          className="flex justify-center w-full rounded-md pl-4 py-2  text-white hover: focus:outline-none"
+          className="flex justify-center w-full rounded-md pl-4 py-2  text-primaryDarkest hover: focus:outline-none"
         >
-          <span className="pr-1"> {icon}</span>
+          <span className="pr-1 justify-center items-center pt-[2px]"> {icon}</span>
           {name}
-          <svg
-            className="ml-1 mt-1"
+          <svg className="justify-center mt-1"
             xmlns="http://www.w3.org/2000/svg"
             width="21"
             height="20"
@@ -25,9 +24,9 @@ const DropdownMenu = ({ name, options, icon }) => {
             fill="none"
           >
             <path
-              d="M5.5 7.5L10.5 12.5L15.5 7.5"
-              stroke="#FCFCFD"
-              strokeWidth="1.66667"
+              d="M5.3999 7.5L10.3999 12.5L15.3999 7.5"
+              stroke="#265896"
+              stroke-width="1.66667"
               stroke-linecap="round"
               stroke-linejoin="round"
             />
@@ -45,7 +44,7 @@ const DropdownMenu = ({ name, options, icon }) => {
               {options.map((option) => {
                 return (
                   <a
-                    className="block px-2 w-[152px] text-sm text-primary hover:bg-gray-100 hover:text-secondary font-bold"
+                    className="block p-1 w-[152px] text-[14px] text-gray-500 font-bold hover:text-secondary"
                     role="menuitem"
                     href={option.href}
                   >

@@ -9,6 +9,7 @@ export default function HomeFixedPriceSection() {
   const [fixedPriceItems, setFixedPriceItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
   const fetchFixedPriceItems = async () => {
     try {
       setLoading(true);
@@ -36,45 +37,56 @@ export default function HomeFixedPriceSection() {
       <h3 className="text-black text-[20px] font-bold font-[Alexandria]">
         Buy unique vehicles with affordable prices
       </h3>
-      <div className="grid grid-cols-3 gap-5 justify-items-stretch">
+      <div className="grid grid-cols-3 justify-items-stretch">
         {fixedPriceItems.length > 0 ? (
           fixedPriceItems.map((fixedPriceItem) => {
+            const calculatedMonthlyPrice = fixedPriceItem.price / 12;
             return (
-              <div className="w-full m-5 bg-white rounded-md shadow-md  hover:shadow-lg">
+              <div className="w-[330px] m-5 bg-white rounded-md shadow-md  hover:shadow-lg">
                 <SwiperImageComponent
                   imageUrls={fixedPriceItem.images}
                   item={fixedPriceItem}
                 />
 
-                <div className="flex flex-col items-start p-[10px_12px_16px_12px] self-stretch justify-between">
-                  <div className="flex justify-between items-center text-grayDarkest pb-2">
-                    <p className="font-bold">
-                      {fixedPriceItem.title.length < 18
-                        ? fixedPriceItem.title
-                        : fixedPriceItem.title.substring(0, 18) + "..."}
-                    </p>
-                    <p className="ml-9 text-[12px]">
-                      {fixedPriceItem.currency}{" "}
-                      <span className="ml-[2px] font-bold text-base">
-                        {fixedPriceItem.price.toLocaleString()}
-                      </span>
-                    </p>
-
+                <div className="flex flex-col w-full items-start p-[10px_12px_16px_12px] self-stretch justify-between">
+                  <div className="flex justify-between items-center text-grayDarkest pb-2 w-full">
                     {!fixedPriceItem.is_reserved ? (
-                      <div className="justify-end text-right ml-auto text-neutral-500">
-                        <p className="text-[12px]">
-                          {fixedPriceItem.currency}{" "}
-                          <span className="ml-[2px]">
-                            {fixedPriceItem.price.toLocaleString()}
-                          </span>
+                      <>
+                        <p className="font-bold">
+                          {fixedPriceItem.title.length < 18
+                            ? fixedPriceItem.title
+                            : fixedPriceItem.title.substring(0, 18) + "..."}
                         </p>
-                      </div>
+                        <span className="flex flex-col w-1/2">
+                          <div className="flex items-center justify-end">
+                            <span className="text-xs mr-1">
+                              {fixedPriceItem.currency}
+                            </span>
+                            <span className="text-md font-bold">
+                              {fixedPriceItem.price.toLocaleString()}
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-end">
+                            <span className="text-xs mr-0.5">
+                              {fixedPriceItem.currency}
+                            </span>
+                            <span className="text-xs">
+                              {calculatedMonthlyPrice.toLocaleString()} /
+                              Month
+                            </span>
+                          </div>
+                        </span>
+                      </>
                     ) : (
-                      <div></div>
+                      <p className="font-bold">
+                        {fixedPriceItem.title.length < 20
+                          ? fixedPriceItem.title
+                          : fixedPriceItem.title.substring(0, 20) + "..."}
+                      </p>
                     )}
                   </div>
 
-                  <svg
+                  {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="none"
@@ -85,7 +97,7 @@ export default function HomeFixedPriceSection() {
                     className="w-4 h-4 mr-2"
                   >
                     <path d="M18 13V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2z" />
-                  </svg>
+                  </svg> */}
                   <ul className="flex space-x-2">
                     {fixedPriceItem.specs.map((spec) => (
                       <li className="text-gray-700 flex items-center justify-center pl-3">

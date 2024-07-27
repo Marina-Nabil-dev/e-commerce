@@ -16,7 +16,7 @@ function App() {
           style={{ backgroundImage: 'url("/home/home2.jpg")' }}
         >
           <Navbar />
-          <HomeSearchSection />
+          {/* <HomeSearchSection /> */}
         </div>
         <HomeAuctionSection />
 
