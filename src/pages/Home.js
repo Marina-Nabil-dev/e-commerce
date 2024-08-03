@@ -4,10 +4,11 @@ import Navbar from "./Navbar";
 import HomeSearchSection from "../components/home/HomeSearchSection";
 import WhyBuyFromUsSection from "../components/home/WhyBuyFromUsSection";
 import HomeFixedPriceSection from "../components/home/HomeFixedPriceSection";
+import WhatDoWeDoSection from "../components/home/WhatDoWeDo";
 
 function App() {
   return (
-    <div className="flex flex-row justify-center self-stretch text-white">
+    <div className="flex flex-row justify-center h-full relative self-stretch text-white">
       <div className="absolute w-full h-full ">
         <div
           className="relative w-full h-162 
@@ -18,11 +19,13 @@ function App() {
           <Navbar />
           {/* <HomeSearchSection /> */}
         </div>
-        <HomeAuctionSection />
+
+        <WhatDoWeDoSection/>
+        {/* <HomeAuctionSection /> */}
 
         <WhyBuyFromUsSection />
 
-        <HomeFixedPriceSection />
+        {/* <HomeFixedPriceSection /> */}
       </div>
     </div>
   );

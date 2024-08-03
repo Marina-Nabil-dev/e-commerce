@@ -102,12 +102,7 @@ function App() {
       <hr className="border-b-[1px] border-grayLighter" />
 
       <div
-        className={`bg-white shadow-md text-primaryDarkest p-[16px_80px] transition-all duration-300 ${
-          isScrollerd
-            ? "bg-white text-primaryDarkest sticky top-0"
-            : "bg-white text-primaryDarkest"
-        }`}
-      >
+        className="bg-white shadow-md text-primaryDarkest p-[16px_80px] transition-all duration-300 sticky top-0">
         <div className="container mx-auto grid grid-flow-col grid-cols-5">
           {" "}
           {DropDownItems.map((item) => (

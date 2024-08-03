@@ -4,19 +4,24 @@ const DropdownMenu = ({ name, options, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative inline-flex self-center w-30 text-center">
+    <div className="relative inline-flex self-center w-30 text-center ">
       <div
+        className=" hover:shadow-sm bg-white"
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
       >
         <button
           id="menu"
           type="button"
-          className="flex justify-center w-full rounded-md pl-4 py-2  text-primaryDarkest hover: focus:outline-none"
+          className="flex justify-center w-full rounded-md pl-4 py-2  text-primaryDarkest hover:focus:outline-none "
         >
-          <span className="pr-1 justify-center items-center pt-[2px]"> {icon}</span>
+          <span className="pr-1 justify-center items-center pt-[2px]">
+            {" "}
+            {icon}
+          </span>
           {name}
-          <svg className="justify-center mt-1"
+          <svg
+            className="justify-center mt-1 hover:text-secondary"
             xmlns="http://www.w3.org/2000/svg"
             width="21"
             height="20"

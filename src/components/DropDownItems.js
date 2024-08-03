@@ -23,19 +23,19 @@ const DropDownItems = [
       icon: <BuyNowIcon />,
       options: [
         {
-          name: "All",
+          name: "All Cars",
           href: "#",
         },
         {
-          name: "New",
+          name: "New Cars",
           href: "#",
         },
         {
-          name: "Used",
+          name: "Used Cars",
           href: "#",
         },
         {
-          name: "Electric",
+          name: "Electric Cars",
           href: "#",
         },
       ],
@@ -45,7 +45,7 @@ const DropDownItems = [
       icon: <ImportNowIcon />,
       options: [
         {
-          "name" : "All",
+          "name" : "All Cars",
           "href" : "#"
         },
       ],
