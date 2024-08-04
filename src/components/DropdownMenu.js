@@ -13,7 +13,7 @@ const DropdownMenu = ({ name, options, icon }) => {
         <button
           id="menu"
           type="button"
-          className="flex justify-center w-full rounded-md pl-4 py-2  text-primaryDarkest hover:focus:outline-none "
+          className="flex justify-center w-full rounded-md pl-4 py-2 font-semibold text-primaryDarkest hover:focus:outline-none "
         >
           <span className="pr-1 justify-center items-center pt-[2px]">
             {" "}
@@ -40,7 +40,8 @@ const DropdownMenu = ({ name, options, icon }) => {
 
         {isOpen && (
           <div
-            className="flex self-stretch items-center justify-center origin-top-right absolute right-0  rounded-md shadow-lg bg-white text-black ring-1 ring-black ring-opacity-5 focus:outline-none"
+            className="flex self-stretch items-center justify-center origin-top-right absolute  rounded-md shadow-lg 
+            bg-white text-black ring-1 ring-black ring-opacity-5 focus:outline-none"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
@@ -48,13 +49,13 @@ const DropdownMenu = ({ name, options, icon }) => {
             <div className="py-1" role="none">
               {options.map((option) => {
                 return (
-                  <a
+                  <Link
                     className="block p-1 w-[152px] text-[14px] text-gray-500 font-bold hover:text-secondary"
                     role="menuitem"
-                    href={option.href}
+                    to={option.href}
                   >
                     {option.name}
-                  </a>
+                  </Link>
                 );
               })}
             </div>
