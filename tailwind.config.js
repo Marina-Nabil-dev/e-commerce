@@ -13,7 +13,7 @@ module.exports = {
         grayLightest: "#FCFCFD",
         secondary: "#E19200",
         light: "#E6F0FE",
-        white: "#FCFCFD",
+        white: "#FFFFFF",
         gray: {
           500: "#667085",
           300: "#98A2B3",

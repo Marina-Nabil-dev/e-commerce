@@ -21,9 +21,11 @@ function App() {
         </div>
 
         <WhatDoWeDoSection/>
-        {/* <HomeAuctionSection /> */}
 
         <WhyBuyFromUsSection />
+
+        <HomeAuctionSection />
+
 
         {/* <HomeFixedPriceSection /> */}
       </div>

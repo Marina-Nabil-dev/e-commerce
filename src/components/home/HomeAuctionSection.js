@@ -7,7 +7,7 @@ import { FaClock } from "react-icons/fa";
 import AuctionIcon from "../icons/AuctionIcon";
 import formatTime from "../../helpers/formatTime";
 import SwiperImageComponent from "../SwiperImageComponent";
-
+import { Link } from "react-router-dom";
 
 export default function HomeAuctionSection() {
   const [auctions, setAuctions] = useState([]);
@@ -47,9 +47,12 @@ export default function HomeAuctionSection() {
         {auctions.length > 0 ? (
           auctions.map((auction) => {
             return (
-              <div className="w-[330px] h-[360px] flex flex-col gap-4 pr-2 items-center bg-white rounded-md shadow-sm shadow-dark-700 mb-2">
+              <div className="w-[330px] h-[360px] flex flex-col gap-4 pr-2 items-center bg-grayLightest rounded-md shadow-sm shadow-dark-700 mb-2">
                 <div className="relative text-gray-500">
-                  <SwiperImageComponent imageUrls={auction.images} item={auction} />
+                  <SwiperImageComponent
+                    imageUrls={auction.images}
+                    item={auction}
+                  />
 
                   <div className="max-w-[360px]">
                     {auction.auction_data.is_upcoming ? (
@@ -66,9 +69,9 @@ export default function HomeAuctionSection() {
                       </div>
                     ) : (
                       <div
-                        className="flex p-2 justify-center items-center 
+                        className="flex p-2 justify-center items-center max-w-[100%]
                     bg-gradient-to-b from-[#36a769] to-[#28ce16] rounded-b-xl
-                    gap-4 text-white font-bold text-sm  "
+                    gap-4 text-slate-50 font-bold text-sm "
                       >
                         <AuctionIcon />{" "}
                         <span className="">
@@ -100,9 +103,12 @@ export default function HomeAuctionSection() {
         )}
       </div>
       <div className="flex flex-col-2 gap-4 justify-center self-stretch items-center w-full">
-        <button className="bg-primary rounded-full text-white font-bold p-3 hover:bg-[#376195] ">
+        <Link
+          to={HomeRoutes.LIVE_AUCTIONS}
+          className="bg-primary rounded-full text-white font-bold p-3 hover:bg-[#376195] "
+        >
           View All Auctions
-        </button>
+        </Link>
         <button className="bg-white rounded-full text-primary font-bold hover:bg-[#c8ddf6] border-2 border-primary p-3">
           View Upcoming Auctions
         </button>

@@ -1,20 +1,22 @@
 import BuyNowIcon from "./../components/icons/BuyNowIcon";
 import ImportNowIcon from "../components/icons/ImportNow";
-import AuctionIcon from "../components/icons/AuctionIcon";
 import OurServicesIcon from "../components/icons/OurServicesIcon";
 import InfoIcon from "./icons/InfoIcon";
+import NavbarAuctionIcon from "./icons/NavbarAuctionIcon";
+import LiveAuction from "../pages/LiveAuction";
+
 const DropDownItems = [
     {
       name: "Auctions",
-      icon: <AuctionIcon />,
+      icon: <NavbarAuctionIcon />,
       options: [
         {
           name: "Live Auctions",
-          href: "#",
+          href: "/live-auctions",
         },
         {
           name: "Upcoming Auctions",
-          href: "#",
+          href: "/upcoming-auctions",
         },
       ],
     },
@@ -24,19 +26,19 @@ const DropDownItems = [
       options: [
         {
           name: "All Cars",
-          href: "#",
+          href: "/fixed-price-cars",
         },
         {
           name: "New Cars",
-          href: "#",
+          href: "/fixed-price-new-cars",
         },
         {
           name: "Used Cars",
-          href: "#",
+          href: "/fixed-price-used-cars",
         },
         {
           name: "Electric Cars",
-          href: "#",
+          href: "/fixed-price-electric-cars",
         },
       ],
     },
@@ -46,7 +48,7 @@ const DropDownItems = [
       options: [
         {
           "name" : "All Cars",
-          "href" : "#"
+          "href" : "/imported-cars"
         },
       ],
     },

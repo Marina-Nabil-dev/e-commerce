@@ -6,7 +6,6 @@ export default function WhatDoWeDoSection() {
   const [selectedTab, setSelectedTab] = useState("Buy");
 
   const handleTabClick = (tab) => {
-    console.log("ss");
     setSelectedTab(tab);
   };
 

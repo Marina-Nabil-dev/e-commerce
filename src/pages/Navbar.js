@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import MobileMenu from "../components/MobileMenu";
 import DropdownMenu from "./../components/DropdownMenu";
 import DropDownItems from "../components/DropDownItems";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const inputRef = useRef(null);
@@ -115,6 +116,7 @@ function App() {
           ))}
         </div>
       </div>
+      <Outlet />
     </>
   );
 }
