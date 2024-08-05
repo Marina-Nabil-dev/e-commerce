@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {  useRef, useState } from "react";
 import MobileMenu from "../components/MobileMenu";
 import DropdownMenu from "./../components/DropdownMenu";
 import DropDownItems from "../components/DropDownItems";

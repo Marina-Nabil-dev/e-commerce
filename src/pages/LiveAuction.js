@@ -24,6 +24,9 @@ export default function LiveAuction() {
   useEffect(() => {
     fetchLiveAuctions();
   }, []);
+
+  const thStyle = "text-primaryDarkest p-2";
+  //set backround color a dymanic var to optimize the performance ${}
   return (
     <>
       <Navbar />
@@ -33,11 +36,11 @@ export default function LiveAuction() {
         </h1>
         <table className="w-full table-fixed m-10 text-center">
           <thead className="bg-gray-50 border-b">
-            <tr className="text-primaryDarkest p-2">
-              <th className="text-primaryDarkest p-2">Vehicle</th>
-              <th className="text-primaryDarkest p-2">Ends In</th>
-              <th className="text-primaryDarkest p-2">Auction Type</th>
-              <th className="text-primaryDarkest p-2">Status</th>
+            <tr className = {thStyle}>
+              <th className={thStyle}>Vehicle</th>
+              <th className={thStyle}>Ends In</th>
+              <th className={thStyle}>Auction Type</th>
+              <th className={thStyle}>Status</th>
             </tr>
           </thead>
           <tbody className="">
@@ -51,7 +54,7 @@ export default function LiveAuction() {
                     </td>
                     <td className="px-4 py-3">{auction.sale_type.name}</td>
                     <td className="px-4 py-3">
-                      <div className="flex items-center justify-center rounded-full bg-green-100 max-w-[100px] mx-auto">
+                      <div className="flex items-center justify-center rounded-full bg-green-50 max-w-[100px] mx-auto">
                         <CheckIcon />
                         <span className="font-medium mx-2 ">
                           Active
