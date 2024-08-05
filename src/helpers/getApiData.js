@@ -1,6 +1,5 @@
 import axios from "axios";
 export const getApiData = async (routeName) => {
-  console.log(process.env.REACT_APP_API_DEVELOP_URL);
   try {
     const headers = {
       "Accept-Language": "en",
