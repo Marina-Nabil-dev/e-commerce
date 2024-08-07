@@ -3,4 +3,5 @@ export const HomeRoutes = {
   UPCOMING_AUCTIONS: "home/upcoming-auctions",
   sellTypeItems: "home/vehicles/",
   Home: "/",
+  ALL_ITEMS: "home/vehicles",
 };

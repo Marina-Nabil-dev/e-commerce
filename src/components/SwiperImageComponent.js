@@ -25,7 +25,7 @@ const SwiperImageComponent = ({ imageUrls, item }) => {
   // };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto self-stretch">
       <div className="relative">
         <Swiper
           modules={[Pagination]}
@@ -52,7 +52,7 @@ const SwiperImageComponent = ({ imageUrls, item }) => {
                   {item.price_category.name}
                 </span>
                 {item.has_360 ? (
-                  <span className="rounded-full p-1 bg-black bg-opacity-25 ml-40">
+                  <span className=" p-1 ml-40">
                     <ThreeSixtyIcon />
                   </span>
                 ) : null}

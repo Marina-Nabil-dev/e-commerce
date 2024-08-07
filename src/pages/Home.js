@@ -1,11 +1,9 @@
 import React from "react";
 import HomeAuctionSection from "../components/home/HomeAuctionSection";
 import Navbar from "./Navbar";
-import HomeSearchSection from "../components/home/HomeSearchSection";
 import WhyBuyFromUsSection from "../components/home/WhyBuyFromUsSection";
-import HomeFixedPriceSection from "../components/home/HomeFixedPriceSection";
 import WhatDoWeDoSection from "../components/home/WhatDoWeDo";
-
+import RecentlyAddedSection from "../components/home/RecentlyAdded";
 function App() {
   return (
     <div className="flex flex-row justify-center h-full relative self-stretch text-white">
@@ -23,8 +21,9 @@ function App() {
         <WhatDoWeDoSection/>
 
         <WhyBuyFromUsSection />
+        <RecentlyAddedSection />
 
-        <HomeAuctionSection />
+        {/* <HomeAuctionSection /> */}
 
 
         {/* <HomeFixedPriceSection /> */}
