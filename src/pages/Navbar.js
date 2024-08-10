@@ -1,4 +1,4 @@
-import React, {  useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MobileMenu from "../components/MobileMenu";
 import DropdownMenu from "./../components/DropdownMenu";
 import DropDownItems from "../components/DropDownItems";
@@ -9,11 +9,9 @@ function App() {
   const inputRef = useRef(null);
   const [isScrollerd, setIsScrolled] = useState(false);
 
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 30);
-  };
-
-  window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+    window.scrollY > 100 ? setIsScrolled(true) : setIsScrolled(false);
+  }, []);
 
   const handleSubmittingForm = (e) => {
     e.preventDefault();
@@ -108,7 +106,7 @@ function App() {
       </div>
       <hr className="border-b-[1px] border-grayLighter" />
 
-      <div className="bg-white shadow-md text-primaryDarkest p-[10px_80px] transition-all duration-300 sticky top-0 lg:flex sm:hidden">
+      <div className="bg-white shadow-md text-primaryDarkest p-[10px_80px] transition-all duration-300  sticky top-0 lg:flex sm:hidden z-50 ">
         <div className="container mx-auto grid grid-flow-col grid-cols-5">
           {" "}
           {DropDownItems.map((item) => (

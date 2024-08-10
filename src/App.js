@@ -3,7 +3,7 @@ import "./App.css";
 import Home from "./pages/Home";
 function App() {
   return (
-    <div className="h-[100vh] w-full my-0">
+    <div className="h-[200vh] w-full my-0">
       <Home />
     </div>
   );
