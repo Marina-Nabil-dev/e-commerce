@@ -8,28 +8,17 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import LiveAuction from "./pages/LiveAuction";
+import Search from "./pages/Search";
 
 const rootElement = document.getElementById("root");
 
 // Create a root using ReactDOM.createRoot
 const root = ReactDOM.createRoot(rootElement);
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/live-auctions",
-    element: <LiveAuction />,
-  },
-]);
 // Render the application
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}>
     <App />
-    </RouterProvider>
   </React.StrictMode>
 );
 

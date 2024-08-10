@@ -18,7 +18,7 @@ export default function PopularBrands() {
     }, [])
 
   return (
-    <div className='text-center  p-[80px_100px]'>
+    <div className='text-center  p-[100px_80px]'>
         <h2 className='text-primaryDarkest text-[48px] font-semibold font-[Alexandria] leading-relaxed tracking-tight pb-10'>Popular Brands</h2>
         <div className='grid xl:grid-cols-4 lg:grid-col-3 sm:grid-col-2 md:grid-cols-3 gap-4 items-center justify-center'>
             {brands.slice(0, 7).map((brand) => (

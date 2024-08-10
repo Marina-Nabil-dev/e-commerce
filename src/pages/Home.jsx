@@ -3,30 +3,17 @@ import Navbar from "./Navbar";
 import WhyBuyFromUsSection from "../components/home/WhyBuyFromUsSection";
 import WhatDoWeDoSection from "../components/home/WhatDoWeDo";
 import RecentlyAddedSection from "../components/home/RecentlyAdded";
-import Footer from "../components/footer";
 import PopularBrands from "../components/home/PopularBrands";
+import HomeBlog from "./../components/home/HomeBlog";
 function App() {
   return (
     <>
-     
-          <Navbar />
-          
-           {/* <HomeSearchSection /> */}
-        
-
-         {/* <WhatDoWeDoSection/> */}
-
-         <WhyBuyFromUsSection />
-         <PopularBrands/>
-         <RecentlyAddedSection />
-         <Footer />
-
-         {/* <HomeAuctionSection /> */}
-
-
-         {/* <HomeFixedPriceSection /> */}
-        
-      </>
+      <WhatDoWeDoSection />
+      <WhyBuyFromUsSection />
+      <PopularBrands />
+      <RecentlyAddedSection />
+      <HomeBlog />
+    </>
   );
 }
 

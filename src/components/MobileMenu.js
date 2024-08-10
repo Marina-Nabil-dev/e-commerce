@@ -7,11 +7,21 @@ function MobileMenu() {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = (e) => {
+    if (!e.target.closest(".menu-container")) {
+      setIsOpen(false);
+    }
+  };
+
+
+
   return (
     <div className="relative">
       <button
         onClick={toggleMenu}
-        className="block lg:hidden px-3 py-2 rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-300"
+        className={`block lg:hidden px-3 py-2 rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-300 ${
+          isOpen ? "hidden" : "block"
+        }`}
       >
         <span className="sr-only">Open main menu</span>
         <svg
@@ -32,8 +42,8 @@ function MobileMenu() {
       </button>
 
       <div
-        className={`absolute z-10 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ${
-          isOpen ? "block" : "hidden"
+        className={`fixed top-0 right-0 h-screen p-4 transition-transform duration-300 ${
+          isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="py-1">

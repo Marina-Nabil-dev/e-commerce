@@ -5,4 +5,6 @@ export const HomeRoutes = {
   Home: "/",
   ALL_ITEMS: "home/vehicles",
   All_BRANDS: "vehicles/brands",
+  SEARCH : "/search",
+  LATEST_ARTICLES : "blog/category-articles/latest-news",
 };

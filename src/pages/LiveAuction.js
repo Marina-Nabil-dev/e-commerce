@@ -28,7 +28,6 @@ export default function LiveAuction() {
   //set backround color a dymanic var to optimize the performance ${}
   return (
     <>
-      <Navbar />
       {LiveAuctions.length > 0 ? (
         <div className="container h-[100vh] mx-auto items-start self-stretch p-8 gap-6">
           <h1 className="text-3xl leading-relaxed tracking-tight text-primaryDarkest font-semibold">
@@ -66,9 +65,8 @@ export default function LiveAuction() {
           </table>
         </div>
       ) : (
-        <NotFound />
+        <NotFound name="Live Auctions" />
       )}
-      <Footer />
     </>
   );
 }

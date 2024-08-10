@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import MobileMenu from "../components/MobileMenu";
 import DropdownMenu from "./../components/DropdownMenu";
 import DropDownItems from "../components/DropDownItems";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { HomeRoutes } from "../routes/home";
 
 function App() {
@@ -119,7 +119,6 @@ function App() {
           ))}
         </div>
       </div>
-      <Outlet />
     </>
   );
 }
