@@ -4,4 +4,5 @@ export const HomeRoutes = {
   sellTypeItems: "home/vehicles/",
   Home: "/",
   ALL_ITEMS: "home/vehicles",
+  All_BRANDS: "vehicles/brands",
 };

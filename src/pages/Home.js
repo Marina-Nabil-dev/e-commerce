@@ -1,9 +1,10 @@
 import React from "react";
-import HomeAuctionSection from "../components/home/HomeAuctionSection";
 import Navbar from "./Navbar";
 import WhyBuyFromUsSection from "../components/home/WhyBuyFromUsSection";
 import WhatDoWeDoSection from "../components/home/WhatDoWeDo";
 import RecentlyAddedSection from "../components/home/RecentlyAdded";
+import Footer from "../components/footer";
+import PopularBrands from "../components/home/PopularBrands";
 function App() {
   return (
     <div className="flex flex-row justify-center h-full relative self-stretch text-white">
@@ -21,7 +22,9 @@ function App() {
         <WhatDoWeDoSection/>
 
         <WhyBuyFromUsSection />
+        <PopularBrands/>
         <RecentlyAddedSection />
+        <Footer />
 
         {/* <HomeAuctionSection /> */}
 

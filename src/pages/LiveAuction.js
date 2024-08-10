@@ -10,8 +10,6 @@ import Footer from "../components/footer";
 
 export default function LiveAuction() {
   const [LiveAuctions, setLiveAuctions] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const fetchLiveAuctions = async () => {
     try {
       const response = await getApiData(
@@ -19,7 +17,6 @@ export default function LiveAuction() {
       );
       setLiveAuctions(response);
     } catch (error) {
-      setError(error);
       console.log(error);
     }
   };

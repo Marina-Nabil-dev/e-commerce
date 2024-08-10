@@ -8,7 +8,6 @@ import { HomeRoutes } from "../routes/home";
 function App() {
   const inputRef = useRef(null);
   const [isScrollerd, setIsScrolled] = useState(false);
-  const navbarRef = useRef(null);
 
   const handleScroll = () => {
     setIsScrolled(window.scrollY > 30);
@@ -109,7 +108,7 @@ function App() {
       </div>
       <hr className="border-b-[1px] border-grayLighter" />
 
-      <div className="bg-white shadow-md text-primaryDarkest p-[10px_80px] transition-all duration-300 sticky top-0">
+      <div className="bg-white shadow-md text-primaryDarkest p-[10px_80px] transition-all duration-300 sticky top-0 lg:flex sm:hidden">
         <div className="container mx-auto grid grid-flow-col grid-cols-5">
           {" "}
           {DropDownItems.map((item) => (
