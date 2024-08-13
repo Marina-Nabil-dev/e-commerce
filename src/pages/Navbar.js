@@ -4,10 +4,15 @@ import DropdownMenu from "./../components/DropdownMenu";
 import DropDownItems from "../components/DropDownItems";
 import { Link } from "react-router-dom";
 import { HomeRoutes } from "../routes/home";
+import LoginModal from "../components/auth/Login";
 
-function App() {
+export default function Navbar() {
   const inputRef = useRef(null);
   const [isScrollerd, setIsScrolled] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
     window.scrollY > 100 ? setIsScrolled(true) : setIsScrolled(false);
@@ -74,7 +79,10 @@ function App() {
           </div>
           <div className=" flex sm:hidden md:hidden items-center lg:flex lg:w-2/6 md:w-1/3 justify-between self-stretch">
             <div className="relative"></div>
-            <button className="flex ml-4 px-2 py-2 gap-2  text-primary font-bold">
+            <button
+              className="flex ml-4 px-2 py-2 gap-2  text-primary font-bold"
+              onClick={openModal}
+            >
               <svg
                 width="20"
                 height="20"
@@ -102,7 +110,6 @@ function App() {
           <MobileMenu />
         </div>
         <span className="border-b-grayDarkest rounded-sm"></span>
-        <div></div>
       </div>
       <hr className="border-b-[1px] border-grayLighter" />
 
@@ -119,8 +126,7 @@ function App() {
           ))}
         </div>
       </div>
+      <LoginModal isOpen={isModalOpen} closeModal={closeModal} />
     </>
   );
 }
-
-export default App;

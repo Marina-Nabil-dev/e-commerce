@@ -107,6 +107,7 @@ export default function WhatDoWeDoSection() {
           </div>
         </TabPanel>
         <TabPanel></TabPanel>
+        <TabPanel></TabPanel>
       </Tabs>
     </div>
   );
