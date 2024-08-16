@@ -32,7 +32,7 @@ function RecentlyAdded() {
         Recently Added
       </h2>
 
-      <div className="grid grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-items-stretch self-stretch">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-items-stretch self-stretch">
         {recentlyAddedItems.length > 0 ? (
           recentlyAddedItems.map((recentlyAddedItem) => {
             const calculatedMonthlyPrice = recentlyAddedItem.price / 12;

@@ -9,6 +9,7 @@ import LoginModal from "../components/auth/Login";
 export default function Navbar() {
   const inputRef = useRef(null);
   const [isScrollerd, setIsScrolled] = useState(false);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -26,17 +27,17 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="bg-white  p-[16px_80px]">
+      <div className="bg-white  p-[10px_110px]">
         <div
           className="container mx-auto flex flex-wrap items-center 
-      justify-between lg:w-auto md:w-auto"
+      justify-between"
         >
           <div className="flex items-center lg:w-4/6 md:w-2/3 gap-7">
             <Link to={HomeRoutes.Home}>
               <img
                 src="/home/logo.png"
                 alt="BIDDEX Logo"
-                className="h-6 w-28"
+                className="h-5 w-28"
               />
             </Link>
             <span className="text-[14px] font-bold text-primary ml-4">
@@ -113,7 +114,7 @@ export default function Navbar() {
       </div>
       <hr className="border-b-[1px] border-grayLighter" />
 
-      <div className="bg-white shadow-md text-primaryDarkest p-[10px_80px] transition-all duration-300  sticky top-0 lg:flex sm:hidden z-50 ">
+      <div className="bg-white shadow-md text-primaryDarkest p-[10px_90px] transition-all duration-300  sticky top-0 lg:flex sm:hidden z-50 ">
         <div className="container mx-auto grid grid-flow-col grid-cols-5">
           {" "}
           {DropDownItems.map((item) => (

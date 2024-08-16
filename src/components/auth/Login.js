@@ -5,18 +5,31 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { useState } from "react";
+import RegisterModal from "./Register";
+import PasswordEye from "../icons/PasswordEye";
 
 export default function LoginModal({ isOpen, closeModal }) {
+  const [isRegisterModalOpen , setOpenRegisterModal] = useState(false)
+  const openRegisterModal = () => setOpenRegisterModal(true);
+  const closeRegisterModal = () => setOpenRegisterModal(false);
+
+  const handleOpenRegitserModal = (e) => {
+    e.preventDefault();
+    closeModal();
+    openRegisterModal();
+  }
+  
   return (
+    <>
     <Dialog
       open={isOpen}
       onClose={closeModal}
       className="fixed inset-0 z-50 flex items-center justify-center w-full"
     >
-      <DialogBackdrop className="fixed inset-0 bg-grayDarkest bg-opacity-70" />
-      <DialogPanel className="relative bg-white rounded-lg shadow-xl p-0 w-full max-w-3xl flex overflow-hidden">
+      <DialogBackdrop className="fixed inset-0 bg-grayDarker bg-opacity-70  backdrop-blur-[2px]" />
+      <DialogPanel className="relative bg-white rounded-lg shadow-xl p-0 w-full max-w-4xl flex overflow-hidden">
         {/* Left side - Form */}
-        <div className="flex flex-col w-1/2 p-8">
+        <div className="flex flex-col w-1/2 p-5">
           <div className="flex justify-start w-6">
             <img
               className="border-[1px] border-grayDarker p-1 rounded-full cursor-pointer"
@@ -25,7 +38,7 @@ export default function LoginModal({ isOpen, closeModal }) {
               onClick={closeModal}
             />
           </div>
-          <div className="pl-20">
+          <div className="px-10 ml-10">
             <div className="flex justify-between items-center">
               <img src="/home/logo.png" alt="Biddex Logo" />
             </div>
@@ -48,7 +61,7 @@ export default function LoginModal({ isOpen, closeModal }) {
                 placeholder="********"
               />
               <span className="absolute right-3 top-2.5 text-gray-500 cursor-pointer">
-                👁️
+              <PasswordEye />
               </span>
             </div>
             <a
@@ -62,7 +75,8 @@ export default function LoginModal({ isOpen, closeModal }) {
             </button>
             <div className="text-center mt-4">
               <p className="text-grayLight">Or</p>
-              <button className="w-full mt-4 flex justify-center items-center bg-white text-gray-700 py-2 px-4 rounded-full border border-gray-300 hover:bg-gray-100">
+              <button className="w-full mt-4 flex justify-center items-center bg-white text-gray-700 py-2 px-4 rounded-full border border-gray-300 hover:bg-gray-100"
+              >
                 <img
                   src="/home/google.svg"
                   alt="Google Logo"
@@ -73,7 +87,7 @@ export default function LoginModal({ isOpen, closeModal }) {
             </div>
             <p className="mt-4 text-center text-gray-500">
               Don't have an account?{" "}
-              <a href="#" className="text-primary font-bold">
+              <a href="#" className="text-primary font-bold"  onClick={handleOpenRegitserModal}>
                 Create a new account
               </a>
             </p>
@@ -83,9 +97,9 @@ export default function LoginModal({ isOpen, closeModal }) {
         {/* Right side - Image */}
         <div
           className="w-1/2 bg-cover bg-right flex relative"
-          style={{ backgroundImage: `url('/path-to-your-image.png')` }}
+          style={{ backgroundImage: `url('/home/loginImage.png')` }}
         >
-          <div className=" justify-end p-8  text-black">
+          <div className=" justify-end p-8  text-white">
             <h2 className="text-3xl font-bold">Welcome back to Biddex</h2>
             <p className="mt-4 text-lg">Login to continue to your next step</p>
             {/* <div className="flex flex-row justify-around my-10 items-end">
@@ -98,5 +112,7 @@ export default function LoginModal({ isOpen, closeModal }) {
         </div>
       </DialogPanel>
     </Dialog>
+    <RegisterModal isOpen={isRegisterModalOpen} closeModal={closeRegisterModal} />
+    </>
   );
 }

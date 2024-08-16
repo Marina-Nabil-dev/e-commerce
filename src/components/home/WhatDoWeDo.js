@@ -10,7 +10,7 @@ export default function WhatDoWeDoSection() {
   };
 
   return (
-    <div className="container mx-auto px-24 py-16">
+    <div className="container mx-auto px-28 py-10">
       <div className="flex justify-center mb-8">
         <div className="flex items-center justify-center text-center">
           <h1 className="text-5xl font-bold text-primaryDarkest">
@@ -20,41 +20,41 @@ export default function WhatDoWeDoSection() {
       </div>
 
       <Tabs className="">
-        <TabList className="grid grid-cols-4 gap-4 justify-center items-center border-b-2  text-center">
+        <TabList className="grid grid-cols-4 gap-3 justify-center items-center border-b-2  text-center">
           <Tab
-            className="text-primaryDarkest font-semibold pb-2.5 border-b-0
-             aria-selected:text-primaryDarkest aria-selected:border-b-primary aria-selected:border-b-2 aria-selected:font-bold"
+            className="text-primaryDarkest font-semibold pb-2.5 border-b-0 text-[20px]
+             aria-selected:text-primary aria-selected:border-b-primary aria-selected:border-b-2 aria-selected:font-bold"
             onClick={() => handleTabClick("Buy")}
             selected={selectedTab === "Buy"}
           >
             Buy
           </Tab>
           <Tab
-            className="text-primaryDarkest font-semibold pb-2.5 border-b-0
-            aria-selected:text-primaryDarkest aria-selected:border-b-primary aria-selected:border-b-2 aria-selected:font-bold"
+            className="text-primaryDarkest font-semibold pb-2.5 border-b-0 text-[20px]
+            aria-selected:text-primary aria-selected:border-b-primary aria-selected:border-b-2 aria-selected:font-bold"
             onClick={() => handleTabClick("Sell")}
             selected={selectedTab === "Sell"}
           >
             Sell
           </Tab>
           <Tab
-            className="text-primaryDarkest font-semibold pb-2.5 border-b-0
-             aria-selected:text-primaryDarkest aria-selected:border-b-primary aria-selected:border-b-2 aria-selected:font-bold"
+            className="text-primaryDarkest font-semibold pb-2.5 border-b-0 text-[20px]
+             aria-selected:text-primary aria-selected:border-b-primary aria-selected:border-b-2 aria-selected:font-bold"
             onClick={() => handleTabClick("Import")}
             selected={selectedTab === "Import"}
           >
             Import
           </Tab>
           <Tab
-            className="text-primaryDarkest font-semibold pb-2.5 border-b-0
-             aria-selected:text-primaryDarkest aria-selected:border-b-primary aria-selected:border-b-2 aria-selected:font-bold"
+            className="text-primaryDarkest font-semibold pb-2.5 border-b-0 text-[20px]
+             aria-selected:text-primary aria-selected:border-b-primary aria-selected:border-b-2 aria-selected:font-bold"
             onClick={() => handleTabClick("Auction")}
             selected={selectedTab === "Auction"}
           >
             Auction
           </Tab>
         </TabList>
-        <TabPanel className="justify-end text-primaryDarkest font-bold p-2">
+        <TabPanel className="justify-end text-primaryDarkest font-bold pt-16 ">
           <div className="flex items-stretch justify-start">
             <div className="flex-1 w-2/3 ">
               <h2 className="text-3xl font-bold mb-4 text-primaryDarkest">
