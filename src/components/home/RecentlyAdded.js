@@ -38,7 +38,7 @@ function RecentlyAdded() {
             const calculatedMonthlyPrice = recentlyAddedItem.price / 12;
             return (
               <div className="w-[330px] m-5 bg-white rounded-md shadow-md  hover:shadow-lg">
-                <SwiperImageComponent
+                <SwiperImageComponent key={recentlyAddedItem.id}
                   imageUrls={recentlyAddedItem.images}
                   item={recentlyAddedItem}
                 />
@@ -83,7 +83,7 @@ function RecentlyAdded() {
 
                   <ul className="flex space-x-2 max-h-[60px] pt-2">
                     {recentlyAddedItem.specs.map((spec) => (
-                      <li className="text-gray-700 flex items-center justify-center pl-3">
+                      <li className="text-gray-700 flex items-center justify-center pl-3" key={spec.id}>
                         {spec.icon != "" ? (
                           <img className="pr-1 size-5" src={spec.icon} />
                         ) : (

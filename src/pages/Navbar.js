@@ -127,7 +127,7 @@ export default function Navbar() {
           ))}
         </div>
       </div>
-      <LoginModal isOpen={isModalOpen} closeModal={closeModal} />
+      <LoginModal isOpen={isModalOpen} closeModal={closeModal} showImage={true} />
     </>
   );
 }

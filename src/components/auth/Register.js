@@ -4,31 +4,41 @@ import PasswordEye from "../icons/PasswordEye";
 import LoginModal from "./Login";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
-import Message from './../Message';
-export default function RegisterModal({ isOpen, closeModal }) {
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+export default function RegisterModal({ isOpen, closeRegisterModal, showImage }) {
+    
   const [user, setUser] = useState({
     name: "",
     phoneNumber: "",
     password: "",
     confirmPassword: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const [isLoginModalOpen, setOpenLoginModal] = useState(false);
   const handleLoginModal = (e) => {
     e.preventDefault();
-    closeModal();
     setOpenLoginModal(true);
+    closeRegisterModal();
   };
+  
   let validationSchema = Yup.object({
-      "name": Yup.string().required("Please enter your name").min(2, "Name is too short"),
-      "phoneNumber": Yup.string().required("Please enter your phone number")
-      .matches(
-        /^0?[0-9]{10}$/, "Telephone must be 10 digits"
-      ),
-      
-      "password": Yup.string().required("Please enter your password").min(6, "Password is too short"),
+    name: Yup.string()
+      .required("Please enter your name")
+      .min(2, "Name is too short"),
+    phoneNumber: Yup.string()
+      .required("Please enter your phone number")
+      .matches(/^0?[0-9]{10}$/, "Telephone must be 10 valid digits"),
+
+    password: Yup.string()
+      .required("Please enter your password")
+      .min(6, "Password is too short"),
     //   .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/, "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
-      "confirmPassword": Yup.string().required("Please enter your confirm password").oneOf([Yup.ref("password"), null], "Passwords must match"),
-  })
+    confirmPassword: Yup.string()
+      .required("Please enter your confirm password")
+      .oneOf([Yup.ref("password"), null], "Passwords must match"),
+  });
 
   const registerForm = useFormik({
     initialValues: {
@@ -38,42 +48,52 @@ export default function RegisterModal({ isOpen, closeModal }) {
       confirmPassword: "",
     },
     validationSchema,
-    onSubmit: handleRegisterFormSubmit,
+    onSubmit: (values) => {
+      console.log(values);
+    },
   });
 
-  function handleRegisterFormSubmit(event) {
-    // event.preventDefault();
-    // setUser(values);
-    console.log(event);
-  }
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   return (
     <>
       <Dialog
         open={isOpen}
-        onClose={closeModal}
+        onClose={closeRegisterModal}
         className="fixed inset-0 z-50 flex items-center justify-center w-full"
       >
         <DialogBackdrop className="fixed inset-0 bg-grayDarker bg-opacity-70 backdrop-blur-[2px]" />
-        <DialogPanel className="relative bg-white rounded-lg shadow-xl p-0 w-full max-w-4xl flex overflow-hidden">
+        <DialogPanel
+          className={`relative bg-white rounded-lg shadow-xl ${
+            showImage ?  "w-full p-0" : "w-[70%] p-2"
+          } max-w-4xl flex overflow-hidden`}
+        >
           {/* Left side - Form */}
-          <div className="flex flex-col w-1/2 py-3 px-5">
-            <div className="flex justify-start w-6">
+          <div className={`flex flex-col ${
+            showImage ?? "w-1/2"
+          }py-3 px-5`}>
+            <div className="flex justify-end items-end text-right w-6">
               <img
                 className="border-[1px] border-grayDarker p-1 rounded-full cursor-pointer"
                 src="/home/x-close.svg"
                 alt="Biddex Logo"
-                onClick={closeModal}
+                onClick={closeRegisterModal}
               />
             </div>
             <div className="px-10 ml-10">
               <form onSubmit={registerForm.handleSubmit}>
-            
                 <div className="mb-3">
                   <h2 className="text-md text-grayDarker font-semibold mt-4">
                     Phone number or email
                   </h2>
-                  <div className="mt-1 flex">
-                    <span className="inline-flex items-center px-3 bg-gray-200 text-gray-700 rounded-l-md">
+                  <div className="mt-1 flex border-[1px] border-gray-300 rounded-md">
+                    <span className="inline-flex items-center p-2 rounded-r-none px-3 bg-gray-50 ">
                       +20
                     </span>
                     <input
@@ -82,7 +102,7 @@ export default function RegisterModal({ isOpen, closeModal }) {
                       onChange={registerForm.handleChange}
                       onBlur={registerForm.handleBlur}
                       value={registerForm.values.phoneNumber}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:border focus:ring-gray-300"
                       placeholder="1287748574"
                     />
                   </div>
@@ -118,16 +138,26 @@ export default function RegisterModal({ isOpen, closeModal }) {
                   </h2>
                   <div className="mt-1 relative">
                     <input
-                      type="password"
                       name="password"
                       onChange={registerForm.handleChange}
                       onBlur={registerForm.handleBlur}
                       value={registerForm.values.password}
+                      type={showPassword ? "text" : "password"}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="********"
                     />
                     <span className="absolute right-3 top-2.5 text-gray-500 cursor-pointer">
-                      <PasswordEye />
+                      {showPassword ? (
+                        <EyeSlashIcon
+                          onClick={togglePasswordVisibility}
+                          className="size-6 "
+                        />
+                      ) : (
+                        <EyeIcon
+                          onClick={togglePasswordVisibility}
+                          className="size-6"
+                        />
+                      )}
                     </span>
                   </div>
                   {registerForm.errors.password &&
@@ -144,7 +174,7 @@ export default function RegisterModal({ isOpen, closeModal }) {
                   </h2>
                   <div className="mt-1 relative">
                     <input
-                      type="password"
+                      type={showConfirmPassword ? "text" : "password"}
                       name="confirmPassword"
                       onChange={registerForm.handleChange}
                       onBlur={registerForm.handleBlur}
@@ -153,7 +183,17 @@ export default function RegisterModal({ isOpen, closeModal }) {
                       placeholder="********"
                     />
                     <span className="absolute right-3 top-2.5 text-gray-500 cursor-pointer">
-                      <PasswordEye />
+                      {showConfirmPassword ? (
+                        <EyeSlashIcon
+                          onClick={toggleConfirmPasswordVisibility}
+                          className="size-6 "
+                        />
+                      ) : (
+                        <EyeIcon
+                          onClick={toggleConfirmPasswordVisibility}
+                          className="size-6"
+                        />
+                      )}
                     </span>
                   </div>
                   {registerForm.errors.confirmPassword &&
@@ -169,8 +209,10 @@ export default function RegisterModal({ isOpen, closeModal }) {
                   Privacy Policy
                 </span>
 
-                <button className="w-full mt-6 font-bold bg-primary text-white py-2 px-4 rounded-full hover:bg-primaryDarker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={registerForm.handleSubmit}>
+                <button
+                  className="w-full mt-6 font-bold bg-primary text-white py-2 px-4 rounded-full hover:bg-primaryDarker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  onClick={registerForm.handleSubmit}
+                >
                   Create Account
                 </button>
               </form>
@@ -199,23 +241,26 @@ export default function RegisterModal({ isOpen, closeModal }) {
           </div>
 
           {/* Right side - Image */}
-          <div
-            className="w-1/2 bg-cover bg-right flex relative"
-            style={{ backgroundImage: `url('/home/loginImage.png')` }}
-          >
-            <div className=" justify-end p-8  text-white">
-              <h2 className="text-3xl font-bold">Welcome back to Biddex</h2>
-              <p className="mt-4 text-lg">
-                Login to continue to your next step
-              </p>
+          {showImage && (
+            <div
+              className="w-1/2 bg-cover bg-right flex relative"
+              style={{ backgroundImage: `url('/home/loginImage.png')` }}
+            >
+              <div className=" justify-end p-8  text-white">
+                <h2 className="text-3xl font-bold">Welcome back to Biddex</h2>
+                <p className="mt-4 text-lg">
+                Register your Account
+                </p>
+              </div>
             </div>
-          </div>
+          )}
         </DialogPanel>
       </Dialog>
       {isLoginModalOpen && (
         <LoginModal
           isOpen={isLoginModalOpen}
-          closeModal={() => setOpenLoginModal(false)}
+          closeModal={setOpenLoginModal}
+          showImage={showImage || false}
         />
       )}
     </>
