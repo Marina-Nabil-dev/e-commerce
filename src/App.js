@@ -6,6 +6,8 @@ import LiveAuction from "./pages/LiveAuction";
 import Search from "./pages/Search";
 import Layout from "./pages/Layout";
 import NotFound from "./components/NotFound";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const router = createBrowserRouter([
     {
@@ -34,7 +36,7 @@ function App() {
 
   return (
     <RouterProvider router={router}>
-    
+      <ToastContainer />
     </RouterProvider>
   );
 }

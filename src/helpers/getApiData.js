@@ -4,7 +4,7 @@ export const getApiData = async (routeName) => {
     const headers = {
       "Accept-Language": "en",
       Accept: "application/json",
-      "x-api-key" : process.env.REACT_APP_DEVELOP_API_KEY
+      "x-api-key": process.env.REACT_APP_DEVELOP_API_KEY,
     };
 
     const response = await axios.get(

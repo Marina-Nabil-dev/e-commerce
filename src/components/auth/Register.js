@@ -1,20 +1,27 @@
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import React, { useState } from "react";
-import PasswordEye from "../icons/PasswordEye";
 import LoginModal from "./Login";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-export default function RegisterModal({ isOpen, closeRegisterModal, showImage }) {
-    
+import { AuthRoutes } from "../../routes/authRoutes";
+import { postApiData } from './../../helpers/postApiData';
+import { toast } from 'react-toastify';
+export default function RegisterModal({
+  isOpen,
+  closeRegisterModal,
+  showImage,
+}) {
   const [user, setUser] = useState({
     name: "",
-    phoneNumber: "",
+    mobile_number: "",
     password: "",
-    confirmPassword: "",
+    password_confirmation: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading , setLoading] = useState(false)
+  const [errors, setErrors] = useState({});
 
   const [isLoginModalOpen, setOpenLoginModal] = useState(false);
   const handleLoginModal = (e) => {
@@ -22,12 +29,12 @@ export default function RegisterModal({ isOpen, closeRegisterModal, showImage })
     setOpenLoginModal(true);
     closeRegisterModal();
   };
-  
+
   let validationSchema = Yup.object({
     name: Yup.string()
       .required("Please enter your name")
       .min(2, "Name is too short"),
-    phoneNumber: Yup.string()
+    mobile_number: Yup.string()
       .required("Please enter your phone number")
       .matches(/^0?[0-9]{10}$/, "Telephone must be 10 valid digits"),
 
@@ -35,7 +42,7 @@ export default function RegisterModal({ isOpen, closeRegisterModal, showImage })
       .required("Please enter your password")
       .min(6, "Password is too short"),
     //   .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/, "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
-    confirmPassword: Yup.string()
+    password_confirmation: Yup.string()
       .required("Please enter your confirm password")
       .oneOf([Yup.ref("password"), null], "Passwords must match"),
   });
@@ -43,15 +50,36 @@ export default function RegisterModal({ isOpen, closeRegisterModal, showImage })
   const registerForm = useFormik({
     initialValues: {
       name: "",
-      phoneNumber: "",
+      mobile_number: "",
       password: "",
-      confirmPassword: "",
+      password_confirmation: "",
+      dial_code : "+20"
     },
     validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit:  registerApi,
   });
+
+  async function registerApi(value) {
+    setLoading(true)
+    setErrors([]);
+    setUser(value);
+    
+    
+    const response = await postApiData(AuthRoutes.REGISTER, user);
+    const { status, message, data } = response;
+    setLoading(false)
+    
+
+    if(status === 200){
+        toast.success("Registration Successful");
+       
+        closeRegisterModal();
+        setOpenLoginModal(true);
+    }
+    else{
+        setErrors(data);
+    }
+  }
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -71,16 +99,14 @@ export default function RegisterModal({ isOpen, closeRegisterModal, showImage })
         <DialogBackdrop className="fixed inset-0 bg-grayDarker bg-opacity-70 backdrop-blur-[2px]" />
         <DialogPanel
           className={`relative bg-white rounded-lg shadow-xl ${
-            showImage ?  "w-full p-0" : "w-[70%] p-2"
+            showImage ? "w-full p-0" : "w-[70%] p-2"
           } max-w-4xl flex overflow-hidden`}
         >
           {/* Left side - Form */}
-          <div className={`flex flex-col ${
-            showImage ?? "w-1/2"
-          }py-3 px-5`}>
+          <div className={`flex flex-col ${showImage ? "w-4/6" : "w-full"} py-3 px-5`}>
             <div className="flex justify-end items-end text-right w-6">
               <img
-                className="border-[1px] border-grayDarker p-1 rounded-full cursor-pointer"
+                className="border-[1px] border-grayDarker p-1 my-2 rounded-full cursor-pointer"
                 src="/home/x-close.svg"
                 alt="Biddex Logo"
                 onClick={closeRegisterModal}
@@ -98,20 +124,25 @@ export default function RegisterModal({ isOpen, closeRegisterModal, showImage })
                     </span>
                     <input
                       type="text"
-                      name="phoneNumber"
+                      name="mobile_number"
                       onChange={registerForm.handleChange}
                       onBlur={registerForm.handleBlur}
-                      value={registerForm.values.phoneNumber}
+                      value={registerForm.values.mobile_number}
                       className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:border focus:ring-gray-300"
                       placeholder="1287748574"
                     />
                   </div>
-                  {registerForm.errors.phoneNumber &&
-                  registerForm.touched.phoneNumber ? (
+                  {registerForm.errors.mobile_number &&
+                  registerForm.touched.mobile_number ? (
                     <p className="text-red-500">
-                      {registerForm.errors.phoneNumber}
+                      {registerForm.errors.mobile_number}
                     </p>
                   ) : null}
+
+                  {errors && errors["mobile_number"] ? 
+                    (<p className="text-red-500 font-semibold px-2">{errors["mobile_number"]}</p>) : null
+                  }
+
                 </div>
                 <div className="mb-3">
                   <h2 className="text-md text-grayDarker font-semibold ">
@@ -175,10 +206,10 @@ export default function RegisterModal({ isOpen, closeRegisterModal, showImage })
                   <div className="mt-1 relative">
                     <input
                       type={showConfirmPassword ? "text" : "password"}
-                      name="confirmPassword"
+                      name="password_confirmation"
                       onChange={registerForm.handleChange}
                       onBlur={registerForm.handleBlur}
-                      value={registerForm.values.confirmPassword}
+                      value={registerForm.values.password_confirmation}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="********"
                     />
@@ -196,10 +227,10 @@ export default function RegisterModal({ isOpen, closeRegisterModal, showImage })
                       )}
                     </span>
                   </div>
-                  {registerForm.errors.confirmPassword &&
-                  registerForm.touched.confirmPassword ? (
+                  {registerForm.errors.password_confirmation &&
+                  registerForm.touched.password_confirmation ? (
                     <p className="text-red-500">
-                      {registerForm.errors.confirmPassword}
+                      {registerForm.errors.password_confirmation}
                     </p>
                   ) : null}
                 </div>
@@ -208,13 +239,45 @@ export default function RegisterModal({ isOpen, closeRegisterModal, showImage })
                   By creating an account you accept terms and conditions and
                   Privacy Policy
                 </span>
-
-                <button
-                  className="w-full mt-6 font-bold bg-primary text-white py-2 px-4 rounded-full hover:bg-primaryDarker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  onClick={registerForm.handleSubmit}
-                >
-                  Create Account
-                </button>
+                
+                {isLoading ? (
+                  <button
+                    className="w-full mt-6 items-center justify-center text-center flex font-bold
+                     bg-primary text-white py-2 px-4 rounded-full hover:bg-primaryDarker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    disabled
+                  >
+                    <svg
+                      className="animate-spin h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+            
+                  </button>
+                ) : (
+                  <button
+                    className="w-full mt-6 font-bold bg-primary text-white py-2 px-4 rounded-full hover:bg-primaryDarker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    type="submit" 
+                    onClick={registerForm.handleSubmit}
+                  >
+                   Create Account
+                  </button>
+                )}
+            
               </form>
               <div className="text-center mt-4">
                 <p className="text-grayLight">Or</p>
@@ -227,7 +290,7 @@ export default function RegisterModal({ isOpen, closeRegisterModal, showImage })
                   Register with Google
                 </button>
               </div>
-              <p className="mt-4 text-center text-gray-500">
+              <p className="mt-4 p-2 text-center text-gray-500">
                 Already have an account?{" "}
                 <a
                   href="#"
@@ -248,9 +311,7 @@ export default function RegisterModal({ isOpen, closeRegisterModal, showImage })
             >
               <div className=" justify-end p-8  text-white">
                 <h2 className="text-3xl font-bold">Welcome back to Biddex</h2>
-                <p className="mt-4 text-lg">
-                Register your Account
-                </p>
+                <p className="mt-4 text-lg">Register your Account</p>
               </div>
             </div>
           )}
