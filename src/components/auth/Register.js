@@ -1,5 +1,5 @@
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoginModal from "./Login";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
@@ -59,6 +59,11 @@ export default function RegisterModal({
     onSubmit:  registerApi,
   });
 
+  useEffect(() => {
+    // This effect will run whenever `user` state changes
+    console.log('User state updated:', user);
+}, [user]);
+
   async function registerApi(value) {
     setLoading(true)
     setErrors([]);
@@ -71,7 +76,7 @@ export default function RegisterModal({
     
 
     if(status === 200){
-        toast.success("Registration Successful");
+        toast.success(message);
        
         closeRegisterModal();
         setOpenLoginModal(true);
