@@ -5,8 +5,8 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import RegisterModal from "./Register";
 import PasswordEye from "../icons/PasswordEye";
+import RegisterModal from './../Modals/ModalTypes/RegisterModal';
 
 export default function LoginModal({ isOpen, closeModal, showImage }) {
   const [isRegisterModalOpen, setOpenRegisterModal] = useState(false);

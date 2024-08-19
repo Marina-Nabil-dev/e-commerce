@@ -5,15 +5,24 @@ import DropDownItems from "../components/DropDownItems";
 import { Link } from "react-router-dom";
 import { HomeRoutes } from "../routes/home";
 import LoginModal from "../components/auth/Login";
+import ModalComponent from './../components/Modals/ModalComponent';
 
 export default function Navbar() {
   const inputRef = useRef(null);
   const [isScrollerd, setIsScrolled] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState("");
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = (type) => {
+    setModalType(type);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalType("");
+  };
 
   useEffect(() => {
     window.scrollY > 100 ? setIsScrolled(true) : setIsScrolled(false);
@@ -82,7 +91,7 @@ export default function Navbar() {
             <div className="relative"></div>
             <button
               className="flex ml-4 px-2 py-2 gap-2  text-primary font-bold"
-              onClick={openModal}
+              onClick={() => openModal("login")}
             >
               <svg
                 width="20"
@@ -127,7 +136,17 @@ export default function Navbar() {
           ))}
         </div>
       </div>
-      <LoginModal isOpen={isModalOpen} closeModal={closeModal} showImage={true} />
+
+      <ModalComponent
+        isOpen={isModalOpen}
+        closeModal={closeModal}
+        modalType={modalType}
+        modalProps={
+          {
+            /* pass any additional props here */
+          }
+        }
+      />
     </>
   );
 }
