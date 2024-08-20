@@ -17,6 +17,7 @@ export default function RegisterModal({
     mobile_number: "",
     password: "",
     password_confirmation: "",
+    dial_code: "+20",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -59,14 +60,13 @@ export default function RegisterModal({
     onSubmit:  registerApi,
   });
 
-  useEffect(() => {
-    // This effect will run whenever `user` state changes
-    console.log('User state updated:', user);
-}, [user]);
 
   async function registerApi(value) {
     setLoading(true)
     setErrors([]);
+
+    console.log(value);
+    
     setUser(value);
     
     
