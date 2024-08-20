@@ -36,7 +36,7 @@ function PasswordInput({
           )}
         </span>
       </div>
-      {touched && error && <p className="text-red-500">{error}</p>}
+      {touched && error && <p className="text-red-500 font-semibold">{error}</p>}
     </div>
   );
 }

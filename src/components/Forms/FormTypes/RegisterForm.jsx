@@ -22,6 +22,7 @@ function RegisterForm({
     onSubmit,
   });
 
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <FormField
@@ -32,14 +33,15 @@ function RegisterForm({
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         error={formik.errors.mobile_number}
+        backendError={errors && errors['mobile_number'] ? errors['mobile_number'] : null}
         touched={formik.touched.mobile_number}
         placeholder="1287748574"
+        additionalContent={
+          <span className="inline-flex items-center p-2 px-3 bg-gray-50 rounded-md rounded-r-none border-r border-gray-300 group-focus-within:border-black">
+          +20
+        </span>}
       />
-      {errors && errors["mobile_number"] && (
-        <p className="text-red-500 font-semibold px-2">
-          {errors["mobile_number"]}
-        </p>
-      )}
+    
 
       <FormField
         label="Full Name"
@@ -49,6 +51,7 @@ function RegisterForm({
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         error={formik.errors.name}
+        backendError={errors['name'] ?? errors["name"] }
         touched={formik.touched.name}
         placeholder="John Doe"
       />
@@ -61,9 +64,11 @@ function RegisterForm({
         onBlur={formik.handleBlur}
         error={formik.errors.password}
         touched={formik.touched.password}
+        backendError={errors ?? errors["password"][0] }
         showPassword={showPassword}
         toggleVisibility={togglePasswordVisibility}
       />
+
       <PasswordInput
         label="Confirm Password"
         name="password_confirmation"
@@ -72,6 +77,7 @@ function RegisterForm({
         onBlur={formik.handleBlur}
         error={formik.errors.password_confirmation}
         touched={formik.touched.password_confirmation}
+        backendError={errors ?? errors["password_confirmation"][0] }
         showPassword={showConfirmPassword}
         toggleVisibility={toggleConfirmPasswordVisibility}
       />

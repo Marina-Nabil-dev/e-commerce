@@ -91,7 +91,7 @@ export default function Navbar() {
             <div className="relative"></div>
             <button
               className="flex ml-4 px-2 py-2 gap-2  text-primary font-bold"
-              onClick={() => openModal("login")}
+              onClick={() => openModal("register")}
             >
               <svg
                 width="20"
@@ -137,16 +137,19 @@ export default function Navbar() {
         </div>
       </div>
 
-      <ModalComponent
+      {isModalOpen && <ModalComponent
         isOpen={isModalOpen}
         closeModal={closeModal}
         modalType={modalType}
+        showImage={true}
         modalProps={
           {
             /* pass any additional props here */
           }
         }
+      
       />
+      }
     </>
   );
 }

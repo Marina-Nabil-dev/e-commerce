@@ -1,10 +1,16 @@
 import React, { useState } from "react";
+import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
-import RegisterForm from './../../Forms/FormTypes/RegisterForm';
-import { AuthRoutes } from './../../../routes/authRoutes';
 import { postApiData } from './../../../helpers/postApiData';
-const RegisterModal = ({ closeModal }) => {
+import { AuthRoutes } from './../../../routes/authRoutes';
+import RegisterForm from './../../Forms/FormTypes/RegisterForm';
+const RegisterModal = ({ closeModal, showImage }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const [user, setUser] = useState({
     name: "",
     mobile_number: "",
@@ -12,34 +18,6 @@ const RegisterModal = ({ closeModal }) => {
     password_confirmation: "",
     dial_code: "+20",
   });
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState({});
-//   const [showLoginModal, setShowLoginModal] = useState(false);
-
-  const togglePasswordVisibility = () => setShowPassword(!showPassword);
-  const toggleConfirmPasswordVisibility = () =>
-    setShowConfirmPassword(!showConfirmPassword);
-
-  const handleSubmit = async (values, { setSubmitting }) => {
-    setIsLoading(true);
-    setUser(values);
-    setErrors({});
-//     try {
-//       const response = await postApiData(AuthRoutes.REGISTER, user);
-//       const { status, message, data } = response;
-//       if (status === 200) {
-//         toast.success("Registration successful");
-//       }
-//     } catch (error) {
-//       console.log(error);
-//       setErrors(data);
-//       setIsLoading(false);
-//     }
-//     setSubmitting(false);
-  };
 
   const validationSchema = Yup.object().shape({
     mobile_number: Yup.string().required("Phone number or email is required"),
@@ -52,27 +30,84 @@ const RegisterModal = ({ closeModal }) => {
       .oneOf([Yup.ref("password"), null], "Passwords must match"),
   });
 
+  const handleSubmit = async (values, { setSubmitting }) => {
+    console.log(values);
+    
+    setIsLoading(true);
+    setUser(values);
+    setErrors({});
+    
+      const response = await postApiData(AuthRoutes.REGISTER, user); // Use 'values' instead of 'user' here
+      const { status, message, data } = response;
+      if (status === 200) {
+        toast.success("Registration successful");
+        closeModal(); // Close the modal on success
+      }
+      if(status == 422)
+      {
+        setErrors(data);
+      }
+      
+    setIsLoading(false);
+    setSubmitting(false);
+  };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      mobile_number: "",
+      name: "",
+      password: "",
+      password_confirmation: "",
+    },
+    validationSchema,
+    onSubmit: handleSubmit,
+  });
+
   return (
-    <div>
-      <h2 className="text-lg font-bold">Register</h2>
-      <RegisterForm
-        initialValues={user}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-        isLoading={isLoading}
-        errors={errors}
-        showPassword={showPassword}
-        showConfirmPassword={showConfirmPassword}
-        togglePasswordVisibility={togglePasswordVisibility}
-        toggleConfirmPasswordVisibility={toggleConfirmPasswordVisibility}
-      />
-      <button
-        onClick={closeModal}
-        className="mt-4 px-4 py-2 bg-primary text-white rounded-full"
+    <>
+      <div
+        className={`flex flex-col ${showImage ? "w-1/2" : "w-full"} py-3 px-5`}
       >
-        Close
-      </button>
-    </div>
+        <div className="flex justify-end items-end text-right w-6">
+          <img
+            className="border-[1px] border-grayDarker p-1 my-2 rounded-full cursor-pointer"
+            src="/home/x-close.svg"
+            alt="Biddex Logo"
+          />
+        </div>
+        <div className="px-10 ml-10">
+          <RegisterForm
+            initialValues={user}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+            isLoading={isLoading}
+            errors={errors}
+            showPassword={showPassword}
+            showConfirmPassword={showConfirmPassword}
+            togglePasswordVisibility={togglePasswordVisibility}
+            toggleConfirmPasswordVisibility={toggleConfirmPasswordVisibility}
+          />
+        </div>
+      </div>
+      {showImage && (
+        <div
+          className="w-1/2 bg-cover bg-right flex relative"
+          style={{ backgroundImage: `url('/home/loginImage.png')` }}
+        >
+          <div className=" justify-end p-8  text-white">
+            <h2 className="text-3xl font-bold">Welcome back to Biddex</h2>
+            <p className="mt-4 text-lg">Register your Account</p>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
