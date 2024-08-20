@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import PasswordInput from "./../Fields/PasswordInput";
 import FormField from './../Fields/FormField';
@@ -101,13 +101,13 @@ function RegisterForm({
         Already have an account?{" "}
         <a
           href="#"
-          onClick={formik.handleLoginModal}
           className="text-primary font-bold"
         >
           Sign in
         </a>
       </p>
     </form>
+    
   );
 }
 

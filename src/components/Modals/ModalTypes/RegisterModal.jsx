@@ -79,7 +79,7 @@ const RegisterModal = ({ closeModal, showImage }) => {
           <img
             className="border-[1px] border-grayDarker p-1 my-2 rounded-full cursor-pointer"
             src="/home/x-close.svg"
-            alt="Biddex Logo"
+            alt="close modal" onClick={closeModal}
           />
         </div>
         <div className="px-10 ml-10">

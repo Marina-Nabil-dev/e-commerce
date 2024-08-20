@@ -4,7 +4,6 @@ import DropdownMenu from "./../components/DropdownMenu";
 import DropDownItems from "../components/DropDownItems";
 import { Link } from "react-router-dom";
 import { HomeRoutes } from "../routes/home";
-import LoginModal from "../components/auth/Login";
 import ModalComponent from './../components/Modals/ModalComponent';
 
 export default function Navbar() {
@@ -91,7 +90,7 @@ export default function Navbar() {
             <div className="relative"></div>
             <button
               className="flex ml-4 px-2 py-2 gap-2  text-primary font-bold"
-              onClick={() => openModal("register")}
+              onClick={() => openModal("login")}
             >
               <svg
                 width="20"

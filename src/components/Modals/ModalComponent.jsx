@@ -1,9 +1,10 @@
 import React from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import RegisterModal from "./ModalTypes/RegisterModal";
+import LoginModal from './ModalTypes/LoginModal';
 
 const MODAL_COMPONENTS = {
-//   login: LoginModal,
+  login: LoginModal,
   register: RegisterModal,
   // Add more modal components here as needed
 };
@@ -11,12 +12,11 @@ const MODAL_COMPONENTS = {
 const ModalComponent = ({ isOpen, closeModal, modalType, modalProps, showImage }) => {
   const SpecificModal = MODAL_COMPONENTS[modalType];
   
-
   return (
     <Dialog
       open={isOpen}
       onClose={closeModal}
-      showImage={true}
+      showImage={showImage}
       className="fixed inset-0 z-50 flex items-center justify-center w-full"
     >
       <DialogBackdrop className="fixed inset-0 bg-grayDarker bg-opacity-70 backdrop-blur-[2px]" />
