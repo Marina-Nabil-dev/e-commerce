@@ -23,21 +23,18 @@ const LoginModal = ({ closeModal, showImage }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
-  const [credentials, setCredentials] = useState({
-    mobile_number: "",
-    password: "",
-    dial_code: "+20",
-  });
+  // const [credentials, setCredentials] = useState({
+  //   mobile_number: "",
+  //   password: "",
+  //   dial_code: "+20",
+  // });
 
   const handleSubmit = async (values, { setSubmitting }) => {
     setIsLoading(true);
     setMessage("");
     setErrors({});
-    setCredentials(values);
 
-    console.log(credentials);
-
-    const response = await postApiData(AuthRoutes.LOGIN, credentials);
+    const response = await postApiData(AuthRoutes.LOGIN, values);
 
     const { status, message, data } = response;
     if (status === 200) {

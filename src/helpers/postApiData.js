@@ -4,11 +4,11 @@ export const postApiData = async (routeName, data) => {
     const headers = {
       "Accept-Language": "en",
       Accept: "application/json",
-      "x-api-key": "",
+      "x-api-key": process.env.REACT_APP_DEVELOP_API_KEY,
     };
 
     const response = await axios.post(
-      process.env.REACT_APP_API_LOCAL_URL + routeName,
+      process.env.REACT_APP_API_DEVELOP_URL + routeName,
       data,
       { headers }
     );

@@ -2,10 +2,12 @@ import React from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import RegisterModal from "./ModalTypes/RegisterModal";
 import LoginModal from './ModalTypes/LoginModal';
+import CompleteProfile from "./ModalTypes/CompleteProfile";
 
 const MODAL_COMPONENTS = {
   login: LoginModal,
   register: RegisterModal,
+  completeProfile: CompleteProfile,
   // Add more modal components here as needed
 };
 
