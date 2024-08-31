@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CompleteProfile({ closeModal }) {
+const CompleteProfile = ({ closeModal }) => {
   return (
     <div
       className='flex flex-col  max-w-4xl py-3 px-5'
@@ -16,3 +16,5 @@ export default function CompleteProfile({ closeModal }) {
     </div>
   );
 }
+
+export default CompleteProfile;
