@@ -39,7 +39,9 @@ const LoginModal = ({ closeModal, showImage }) => {
     const { status, message, data } = response;
     if (status === 200) {
       toast.success("Login successful");
-      closeModal();
+      console.log(data);
+      
+      // closeModal();
     }
     if (status == 422) {
       setErrors(data);

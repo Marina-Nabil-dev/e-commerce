@@ -23,13 +23,13 @@ function RegisterForm({
     validationSchema,
     onSubmit,
   });
+  const { isModalOpen, modalType, openModal, closeModal } = useModal();
 
-  function handleLoginModal(e) {
-    closeModal();
+
+  function handleLoginModal() {
     openModal("login");
   }
 
-  const { isModalOpen, modalType, openModal, closeModal } = useModal();
   return (
     <>
       <form onSubmit={formik.handleSubmit}>

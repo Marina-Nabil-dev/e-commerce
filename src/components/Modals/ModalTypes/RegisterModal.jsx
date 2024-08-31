@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { postApiData } from './../../../helpers/postApiData';
 import { AuthRoutes } from './../../../routes/authRoutes';
 import RegisterForm from './../../Forms/FormTypes/RegisterForm';
+import useModal from "../../../hooks/useModal";
 const RegisterModal = ({ closeModal, showImage }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -17,6 +18,8 @@ const RegisterModal = ({ closeModal, showImage }) => {
     password_confirmation: "",
     dial_code: "+20",
   });
+  const { isModalOpen, modalType, openModal, closeOpenModal } = useModal();
+
 
   const validationSchema = Yup.object().shape({
     mobile_number: Yup.string().required("Phone number or email is required"),
@@ -40,7 +43,8 @@ const RegisterModal = ({ closeModal, showImage }) => {
       const { status, message, data } = response;
       if (status === 200) {
         toast.success("Registration successful");
-        closeModal(); // Close the modal on success 
+        closeModal();
+        openModal("completeProfile");
       }
       if(status == 422)
       {

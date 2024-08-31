@@ -9,7 +9,7 @@ const useModal = () => {
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeOpenModal = () => {
     setIsModalOpen(false);
     setModalType("");
   };
@@ -18,7 +18,7 @@ const useModal = () => {
     isModalOpen,
     modalType,
     openModal,
-    closeModal,
+    closeOpenModal,
   };
 };
 
